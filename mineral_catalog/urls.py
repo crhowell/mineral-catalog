@@ -18,7 +18,8 @@ from django.contrib import admin
 from core import views
 
 urlpatterns = [
-    url(r'^detail/', views.MineralDetailView.as_view(), name='detail'),
-    url(r'^$', views.HomepageView.as_view(), name='home'),
+    url(r'^detail/(?P<pk>([\d]+))/$', views.MineralDetailView.as_view(), name='detail'),
+    url(r'^$', views.MineralListView.as_view(), name='home'),
+    #url(r'^$', views.HomepageView.as_view(), name='home'),
     url(r'^admin/', admin.site.urls),
 ]

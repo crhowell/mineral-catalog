@@ -16,12 +16,24 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('filename')
 
+    def parse_to_fields(self, data_list=[]):
+        new_list = []
+        if data_list:
+            for data in data_list:
+                d_list = {}
+                for key, value in data.items():
+                    d_list[key.replace(' ', '_').lower()] = value
+                new_list.append(d_list)
+        return new_list
+
     def handle(self, *args, **options):
         if options['filename']:
-            mineral = Mineral()
             filename = os.path.join(BASE_DIR, options['filename'])
             try:
-                data = json.load(open(filename, encoding="utf-8"))
-                print(data)
+                with open(filename, encoding='utf-8') as data_file:
+                    data = json.load(data_file)
+                    mineral_list = self.parse_to_fields(data)
+                    for mineral in mineral_list:
+                        mnr = Mineral(**mineral).save()
             except FileNotFoundError:
                 print('Error, that file does not exist.')
