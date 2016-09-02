@@ -94,6 +94,3 @@ ENV/
 #SQLite
 *.db
 *.sqlite3
-
-# Static
-core/static/images/*
