@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
-
-{% block title %}{% endblock %}
+{% load static %}
+{% block title %}{{ mineral.name }} | {{ block.super }}{% endblock %}
 
 {% block content %}
 <div class="bounds bounds--small">
@@ -8,39 +8,19 @@
     <div class="grid-100 mineral__container">
       <h1 class="mineral__name">{{ mineral.name }}</h1>
       <div class="mineral__image-bg">
-        <img class="mineral__image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Augelite-au13c.jpg/240px-Augelite-au13c.jpg">
+        <img class="mineral__image" src="{% static 'images/' %}{{ mineral.image_filename|safe }}">
         <p class="mineral__caption">{{ mineral.image_caption }}</p>
       </div>
       <div class="mineral__table-container">
         <table class="mineral__table">
+        {% for field, value in mineral.get_fields %}
+            {% if value %}
           <tr>
-            <td class="mineral__category">Category</td>
-            <td>{{ mineral.category }}</td>
+            <td class="mineral__category">{{ field|title }}</td>
+            <td>{{ value|safe }}</td>
           </tr>
-          <tr>
-            <td class="mineral__category">Formula</td>
-            <td class="mineral__formula">{{ mineral.formula|safe }}</td>
-          </tr>
-          <tr>
-            <td class="mineral__category">Strunz Classification</td>
-            <td>{{ mineral.strunz_classification }}</td>
-          </tr>
-          <tr>
-            <td class="mineral__category">Unit Cell</td>
-            <td>{{ mineral.unit_cell }}</td>
-          </tr>
-          <tr>
-            <td class="mineral__category">Color</td>
-            <td>{{ mineral.color }}</td>
-          </tr>
-          <tr>
-            <td class="mineral__category">Crystal Habit</td>
-            <td>{{ mineral.crystal_habit }}</td>
-          </tr>
-          <tr>
-            <td class="mineral__category">Mohs Scale Hardness</td>
-            <td>3</td>
-          </tr>
+            {% endif %}
+        {% endfor %}
         </table>
       </div>
     </div>

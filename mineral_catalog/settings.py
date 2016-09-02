@@ -121,4 +121,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-INITIAL_DATA = os.path.join(BASE_DIR, 'mineral_catalog', 'fixtures', 'minerals.json')
+STATIC_ROOT = os.path.join(BASE_DIR, 'core', 'static')

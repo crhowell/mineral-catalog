@@ -23,6 +23,11 @@ class Mineral(models.Model):
     specific_gravity = models.CharField(max_length=255, blank=True, default='')
     group = models.CharField(max_length=255, blank=True, default='')
 
+    def get_fields(self):
+        return [(field.name.replace('_', ' '), field.value_to_string(self))
+                for field in Mineral._meta.fields if field.name not in [
+                    'id', 'name', 'image_filename', 'image_caption']]
+
     @classmethod
     def create_mineral(cls, **kwargs):
         try:
