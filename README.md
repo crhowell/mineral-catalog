@@ -6,6 +6,10 @@ A catalog of minerals, built with the Django Web Framework.
  - Django
  - Pillow
 
+## To Test
+From the project directory run:
+    `python manage.py test core`
+
 ## To Run
 1. Open a command-line or terminal window.
 2. `cd` into the project directory
