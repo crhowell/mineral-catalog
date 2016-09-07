@@ -5,7 +5,7 @@ A catalog of minerals, built with the Django Web Framework.
  - Python 3
  - Django
  - Pillow
-
+    
 ## To Test
 From the project directory run:
     `python manage.py test core`
@@ -17,7 +17,7 @@ From the project directory run:
     `python manage.py makemigrations`
     `python manage.py migrate`
 4. To load the provided json data file from the **core** app.
-
+    
     Example:
     `python manage.py populate_db <filepath>`
     
@@ -40,5 +40,15 @@ From the project directory run:
     `python manage.py runserver 0.0.0.0:8000`
     
 6. Open browser to that address.
-    
-    
+
+## Utility
+## To Decode Filenames in a Folder (Windows)
+If you have a folder containing already encoded file names compressed
+from another file system that contain %xx encoded characters.
+
+Example:
+    `python manage.py decode_filenames <folder_path>`
+    *NOTE*: Where *folder_path* starts from project directory.
+
+Windows:
+    `python manage.py decode_filenames core\\static\\images`
