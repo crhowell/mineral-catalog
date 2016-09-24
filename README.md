@@ -3,7 +3,7 @@ A catalog of minerals, built with the Django Web Framework.
 
 ## Prerequisites
  - Python 3
- - Django
+ - Django 1.10 or above
  - Pillow
     
 ## To Test
