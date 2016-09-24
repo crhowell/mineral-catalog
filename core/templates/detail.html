@@ -2,13 +2,15 @@
 {% load static %}
 {% block title %}{{ mineral.name }} | {{ block.super }}{% endblock %}
 
+{% block mineral_grid %}grid-60 grid-push-30{% endblock %}
+
+{% block side_grid %}grid-25 grid-pull-60{% endblock %}
+
 {% block content %}
-<div class="bounds bounds--small">
-    {% include 'logo.html' %}
     <div class="grid-100 mineral__container">
       <h1 class="mineral__name">{{ mineral.name }}</h1>
       <div class="mineral__image-bg">
-        <img class="mineral__image" src="{% static '/images/' %}{{ mineral.image_filename.name }}">
+        <img class="mineral__image" src="{% get_media_prefix %}{{ mineral.image_path }}">
         <p class="mineral__caption">{{ mineral.image_caption }}</p>
       </div>
       <div class="mineral__table-container">
@@ -24,5 +26,4 @@
         </table>
       </div>
     </div>
-  </div>
 {% endblock %}

@@ -1,0 +1,11 @@
+{% load is_active %}
+
+<div class="grid-100">
+    <div class="alpha__container">
+        <ul class="alpha__list">
+            {% for item in alpha_nav %}
+                <li><a class="{% is_active request 'by_letter' item %}" href="{% url 'by_letter' item %}">{{ item }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

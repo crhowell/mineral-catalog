@@ -1,0 +1,26 @@
+{% load is_active %}
+
+<div class="sidebar__container">
+    <form class="search__form" action="{% url 'search_for' '' %}">
+        <input name="term" type="text" placeholder="Search...">
+        <input class="search__button" type="submit" value="Search">
+    </form>
+    <div class="circle--filter circle--secondary--module">
+        <h4>Category</h4>
+        <ul class="circle--link--list">
+        {% if group_list %}
+            {% for item in group_list %}
+                <li><a class="{% is_active request 'by_group' item|slugify %}" href="{% url 'by_group' item|slugify %}">{{ item }}</a></li>
+            {% endfor %}
+        {% endif %}
+        </ul>
+        <h4>Color</h4>
+        <ul class="circle--link--list">
+        {% if color_list %}
+            {% for color in color_list %}
+                <li><a class="{% is_active request 'by_color' color %}" href="{% url 'by_color' color %}">{{ color|title }}</a></li>
+            {% endfor %}
+        {% endif %}
+        </ul>
+    </div>
+</div>

@@ -3,7 +3,7 @@ from django.db import models
 
 class Mineral(models.Model):
     name = models.CharField(max_length=100)
-    image_filename = models.ImageField(upload_to='/static/images')
+    image_filename = models.ImageField(upload_to='/media/minerals/images')
     image_caption = models.CharField(max_length=255)
     category = models.CharField(max_length=255, blank=True, default='')
     formula = models.CharField(max_length=255, blank=True, default='')
@@ -27,6 +27,9 @@ class Mineral(models.Model):
         return [(field.name.replace('_', ' '), field.value_to_string(self))
                 for field in Mineral._meta.fields if field.name not in [
                     'id', 'name', 'image_filename', 'image_caption']]
+
+    def image_path(self):
+        return 'minerals/images/{}'.format(self.image_filename.name)
 
     @classmethod
     def create_mineral(cls, **kwargs):

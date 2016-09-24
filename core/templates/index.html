@@ -1,27 +1,16 @@
 {% extends 'base.html' %}
 
-{% block title %}Home | {{ block.super }}{% endblock %}
+{% block mineral_grid %}grid-75 grid-push-25{% endblock %}
+
 
 {% block content %}
-    <div class="bounds">
-        {% include 'logo.html' %}
-        <div class="grid-100">
-        {% if mineral_list %}
-          <ul class="minerals__container">
-
+        <ul class="minerals__container">
             {% for mineral in mineral_list %}
                 <li class="minerals__item">
-                    <a class="minerals__anchor" href="{% url 'detail' mineral.pk %}">
-                        {{ mineral.name }}
-                    </a>
+                <a class="minerals__anchor" href="{% url 'detail' mineral.pk %}">{{ mineral.name }}</a>
                 </li>
-
             {% endfor %}
-          </ul>
-          {% else %}
-              <h2>Oops, No minerals have been added!</h2>
-          {% endif %}
-
-        </div>
-      </div>
+        </ul>
 {% endblock %}
+
+{% block side_grid %}grid-25 grid-pull-75{% endblock %}
